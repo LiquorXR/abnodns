@@ -14,4 +14,4 @@ DOMAIN-SUFFIX,me.czhd.venus
 DOMAIN-SUFFIX,tencent.mm
 
 # 关键字域名规则
-DOMAIN-KEYWORD,tencent
+;DOMAIN-KEYWORD,tencent
