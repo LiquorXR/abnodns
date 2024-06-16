@@ -79,12 +79,16 @@ dns:
       - 240.0.0.0/4
       - 0.0.0.0/32
 
-proxies-providers:
-  ProxyList:
+proxy-providers:
+  djjc:
     type: http
-    url: https://gates.djjc.cfd/api/v1/client/subscribe?token=3fddbb0ad4394a765f571e6864358551
-    interval: 600
-    path: ./proxy/css.list
+    url: https://sub.gglh.eu.org/provider?url=https%3A%2F%2Fgates.djjc.cfd%2Fapi%2Fv1%2Fclient%2Fsubscribe%3Ftoken%3D3fddbb0ad4394a765f571e6864358551
+    interval: 1800
+    path: ./sub/djjc.yaml
+    health-check:
+      enable: true
+      interval: 60
+      url: https://www.gstatic.com/generate_204
     
 proxy-groups:
   - name: 🚀 模式选择
@@ -92,38 +96,24 @@ proxy-groups:
     proxies:
       - 🔮 负载均衡
       - DIRECT
-      - Y1
-      - Y2
-      - Y3
-      - Y4
-      - Y5
-      - Y6
-      - Y7
-      - Y8
-      - Y9
-      - Y10
+    use:
+      - djjc
   - name: ⚖️ 轮询A
     type: load-balance
     url: http://www.google.com/generate_204
     interval: 180
     strategy: round-robin
-    proxies:
-      - Y1
-      - Y2
-      - Y3
-      - Y4
-      - Y5
+    filter: Y1|Y2|Y3|Y4|Y5
+    use:
+      - djjc
   - name: ⚖️ 轮询B
     type: load-balance
     url: http://www.google.com/generate_204
     interval: 180
     strategy: round-robin
-    proxies:
-      - Y6
-      - Y7
-      - Y8
-      - Y9
-      - Y10
+    filter: Y6|Y7|Y8|Y9|Y10
+    use:
+      - djjc
   - name: 🔮 负载均衡
     type: load-balance
     url: http://www.google.com/generate_204
