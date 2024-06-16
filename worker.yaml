@@ -79,17 +79,13 @@ dns:
       - 240.0.0.0/4
       - 0.0.0.0/32
 
-proxies:
-  - {"name":"Y1","type":"vless","server":"www.visa.com.sg","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
-  - {"name":"Y2","type":"vless","server":"japan.com","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
-  - {"name":"Y3","type":"vless","server":"time.is","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
-  - {"name":"Y4","type":"vless","server":"ip.sb","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
-  - {"name":"Y5","type":"vless","server":"www.whoer.net","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
-  - {"name":"Y6","type":"vless","server":"russia.com","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
-  - {"name":"Y7","type":"vless","server":"malaysia.com","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
-  - {"name":"Y8","type":"vless","server":"shopify.com","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
-  - {"name":"Y9","type":"vless","server":"skk.moe","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
-  - {"name":"Y10","type":"vless","server":"www.visa.com.hk","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+proxies-providers:
+  ProxyList:
+    type: http
+    url: https://gates.djjc.cfd/api/v1/client/subscribe?token=3fddbb0ad4394a765f571e6864358551
+    interval: 600
+    path: ./proxy/css.list
+    
 proxy-groups:
   - name: 🚀 模式选择
     type: select
