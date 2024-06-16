@@ -1,0 +1,283 @@
+mixed-port: 7890
+allow-lan: true
+log-level: info
+external-controller: 0.0.0.0:9090
+dns:
+  enabled: true
+  listen: 0.0.0.0:1053
+  ipv6: true
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - '*.linksys.com'
+    - '*.linksyssmartwifi.com'
+    - swscan.apple.com
+    - mesu.apple.com
+    - '*.msftconnecttest.com'
+    - '*.msftncsi.com'
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - '*.time.edu.cn'
+    - '*.ntp.org.cn'
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - +.music.163.com
+    - '*.126.net'
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - '*.kuwo.cn'
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - +.y.qq.com
+    - +.music.tc.qq.com
+    - aqqmusic.tc.qq.com
+    - +.stream.qqmusic.qq.com
+    - '*.xiami.com'
+    - +.music.migu.cn
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - xbox.*.microsoft.com
+    - +.xboxlive.com
+    - localhost.ptlogin2.qq.com
+    - proxy.golang.org
+    - stun.*.*
+    - stun.*.*.*
+    - '*.mcdn.bilivideo.cn'
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://223.5.5.5/dns-query
+    - https://doh.360.cn/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback-filter:
+    geoip: false
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+
+proxies:
+  - {"name":"Y1","type":"vless","server":"www.visa.com.sg","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+  - {"name":"Y2","type":"vless","server":"japan.com","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+  - {"name":"Y3","type":"vless","server":"time.is","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+  - {"name":"Y4","type":"vless","server":"ip.sb","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+  - {"name":"Y5","type":"vless","server":"www.whoer.net","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+  - {"name":"Y6","type":"vless","server":"russia.com","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+  - {"name":"Y7","type":"vless","server":"malaysia.com","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+  - {"name":"Y8","type":"vless","server":"shopify.com","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+  - {"name":"Y9","type":"vless","server":"skk.moe","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+  - {"name":"Y10","type":"vless","server":"www.visa.com.hk","port":8880,"uuid":"d9305106-670c-48ac-bf7b-25087b68385e","tls":false,"servername":"worker888.bz917161.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560","headers":{"host":"worker888.bz917161.workers.dev"}}}
+proxy-groups:
+  - name: 🚀 模式选择
+    type: select
+    proxies:
+      - 🔮 负载均衡
+      - DIRECT
+      - Y1
+      - Y2
+      - Y3
+      - Y4
+      - Y5
+      - Y6
+      - Y7
+      - Y8
+      - Y9
+      - Y10
+  - name: ⚖️ 轮询A
+    type: load-balance
+    url: http://www.google.com/generate_204
+    interval: 180
+    strategy: round-robin
+    proxies:
+      - Y1
+      - Y2
+      - Y3
+      - Y4
+      - Y5
+  - name: ⚖️ 轮询B
+    type: load-balance
+    url: http://www.google.com/generate_204
+    interval: 180
+    strategy: round-robin
+    proxies:
+      - Y6
+      - Y7
+      - Y8
+      - Y9
+      - Y10
+  - name: 🔮 负载均衡
+    type: load-balance
+    url: http://www.google.com/generate_204
+    interval: 180
+    strategy: round-robin
+    proxies:
+      - ⚖️ 轮询A
+      - ⚖️ 轮询B
+  - name: 🍀 网络净化
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🆎 AdBlock
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 模式选择
+
+rule-providers:
+  GoogleCNProxyIP:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
+    format: text
+    interval: 3600
+    path: ./rule/GoogleCNProxyIP.list
+  Chinese%20Domain%20Name:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/LiquorXR/abnodns/main/Direct%20connection/Chinese%20Domain%20Name.list
+    format: text
+    interval: 3600
+    path: ./rule/Chinese%20Domain%20Name.list
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
+    format: text
+    interval: 3600
+    path: ./rule/LocalAreaNetwork.list
+  UnBan:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+    format: text
+    interval: 3600
+    path: ./rule/UnBan.list
+  ChinaDomain:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+    format: text
+    interval: 3600
+    path: ./rule/ChinaDomain.list
+  ChinaMedia:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
+    format: text
+    interval: 3600
+    path: ./rule/ChinaMedia.list
+  ChinaCompanyIp:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+    format: text
+    interval: 3600
+    path: ./rule/ChinaCompanyIp.list
+  ChinaIp:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIp.list
+    format: text
+    interval: 3600
+    path: ./rule/ChinaIp.list
+  ChinaIpV6:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIpV6.list
+    format: text
+    interval: 3600
+    path: ./rule/ChinaIpV6.list
+  Download:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/SubConv/ZJU-Rule/main/Clash/Download.list
+    format: text
+    interval: 3600
+    path: ./rule/Download.list
+  BanAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    format: text
+    interval: 3600
+    path: ./rule/BanAD.list
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    format: text
+    interval: 3600
+    path: ./rule/BanProgramAD.list
+  BanEasyList:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
+    format: text
+    interval: 3600
+    path: ./rule/BanEasyList.list
+  BanEasyListChina:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
+    format: text
+    interval: 3600
+    path: ./rule/BanEasyListChina.list
+  BanEasyPrivacy:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
+    format: text
+    interval: 3600
+    path: ./rule/BanEasyPrivacy.list
+rules:
+  - RULE-SET,GoogleCNProxyIP,🚀 模式选择
+  - RULE-SET,Chinese%20Domain%20Name,🎯 全球直连
+  - RULE-SET,LocalAreaNetwork,🎯 全球直连
+  - RULE-SET,UnBan,🎯 全球直连
+  - RULE-SET,ChinaDomain,🎯 全球直连
+  - RULE-SET,ChinaMedia,🎯 全球直连
+  - RULE-SET,ChinaCompanyIp,🎯 全球直连
+  - RULE-SET,ChinaIp,🎯 全球直连
+  - RULE-SET,ChinaIpV6,🎯 全球直连
+  - RULE-SET,Download,🎯 全球直连
+  - RULE-SET,BanAD,🍀 网络净化
+  - RULE-SET,BanProgramAD,🍀 网络净化
+  - RULE-SET,BanEasyList,🆎 AdBlock
+  - RULE-SET,BanEasyListChina,🆎 AdBlock
+  - RULE-SET,BanEasyPrivacy,🆎 AdBlock
+  - DOMAIN-SUFFIX,cff.pw,🚀 模式选择
+  - DOMAIN-SUFFIX,vpnse.org,🚀 模式选择
+  - DOMAIN-SUFFIX,cfmem.com,🚀 模式选择
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🚀 模式选择
+  - DOMAIN-SUFFIX,services.googleapis.cn,🚀 模式选择
+  - MATCH,🚀 模式选择
+  - GEOIP,CN,🎯 全球直连,no-resolve
