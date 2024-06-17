@@ -1,5 +1,4 @@
-[custom]
-;中国直连域名
+#中国直连域名
 
 DOMAIN-SUFFIX,265.com
 DOMAIN-SUFFIX,2mdn-cn.net
