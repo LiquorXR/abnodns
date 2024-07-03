@@ -1,16 +1,29 @@
 mixed-port: 7890
-allow-lan: false
+allow-lan: true
 mode: rule
 log-level: info
 ipv6: true
+external-controller: :9090
 unified-delay: true  #统一延迟
 tcp-concurrent: true  #TCP并发
-external-controller: :9090
+use-hosts: true  # 优先本地hosts解析
+cache: true  # DNS缓存
+cache-algorithm: arc  # DNS缓存算法
  
 dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+  - "+.lan"
+  - "+.local"
+  - "+.msftconnecttest.com"
+  - "+.msftncsi.com"
+  - localhost.ptlogin2.qq.com
+  - localhost.sec.qq.com
+  - localhost.work.weixin.qq.com
   default-nameserver:
   - 223.5.5.5
   - 119.29.29.29
@@ -20,17 +33,23 @@ dns:
   - https://1.12.12.12/dns-query
 
 proxies:
-  - {name: 直连-自动,type: direct}
-  - {name: 直连-以太网,type: direct,interface-name: 以太网}
-  - {name: 直连-WLAN,type: direct,interface-name: WLAN}
+  - {name: 🌏 直连-自动,type: direct}
+  - {name: 🌏 直连-以太网,type: direct,interface-name: 以太网}
+  - {name: 🌏 直连-WLAN,type: direct,interface-name: WLAN}
  
 proxy-groups:
-  - name: 🚀 全局直连
+  - name: 🌏 全局直连
     type: select
-    proxies: [直连-自动,直连-以太网,直连-WLAN]
+    proxies: [⚖️ 负载均衡,🌏 直连-自动,🌏 直连-以太网,🌏 直连-WLAN]
+  - name: ⚖️ 负载均衡
+    type: load-balance
+    url: http://www.google.com/generate_204
+    interval: 180
+    strategy: consistent-hashing
+    proxies: [🌏 直连-以太网,🌏 直连-WLAN]
   - name: 🛡 广告拦截
     type: select
-    proxies: [REJECT, 直连-自动]
+    proxies: [REJECT, 🌏 直连-自动,🌏 直连-以太网,🌏 直连-WLAN]
  
 c: &c  # rule-providers复用配置
   type: http
@@ -53,14 +72,10 @@ rule-providers:
     <<: *c
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
     path: ./rule/BanEasyPrivacy.txt
-  ChinaIp: # 中国IP段
-    <<: *ip
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
-    path: ./rule/ChinaIp.txt
-  direct: # 直连域名
-    <<: *ym
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt
-    path: ./rule/direct.txt
+ # BanEasyListChina: # Adblock CN
+ #   <<: *c
+ #   url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
+ #   path: ./rule/BanEasyListChina.txt
   LoyalsGG: # Loyalsoldier广告域名
     <<: *ym
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
@@ -73,6 +88,7 @@ rule-providers:
 rules:
   - RULE-SET,LoyalsGG,🛡 广告拦截
   - RULE-SET,AppGG,🛡 广告拦截
+  # - RULE-SET,BanEasyListChina,🛡 广告拦截
   - RULE-SET,BanEasyPrivacy,🛡 广告拦截
-  - MATCH,🚀 全局直连
+  - MATCH,🌏 全局直连
  
