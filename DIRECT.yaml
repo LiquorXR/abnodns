@@ -49,7 +49,7 @@ proxy-groups:
     proxies: [🌏 直连-以太网,🌏 直连-WLAN]
   - name: 🛡 广告拦截
     type: select
-    proxies: [REJECT, 🌏 直连-自动,🌏 直连-以太网,🌏 直连-WLAN]
+    proxies: [REJECT, 🌏 全局直连]
  
 c: &c  # rule-providers复用配置
   type: http
