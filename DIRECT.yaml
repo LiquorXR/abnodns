@@ -1,0 +1,78 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: true
+unified-delay: true  #统一延迟
+tcp-concurrent: true  #TCP并发
+external-controller: :9090
+ 
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: true
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  - 114.114.114.114
+  nameserver:
+  - https://223.5.5.5/dns-query
+  - https://1.12.12.12/dns-query
+
+proxies:
+  - {name: 直连-自动,type: direct}
+  - {name: 直连-以太网,type: direct,interface-name: 以太网}
+  - {name: 直连-WLAN,type: direct,interface-name: WLAN}
+ 
+proxy-groups:
+  - name: 🚀 全局直连
+    type: select
+    proxies: [直连-自动,直连-以太网,直连-WLAN]
+  - name: 🛡 广告拦截
+    type: select
+    proxies: [REJECT, 直连-自动]
+ 
+c: &c  # rule-providers复用配置
+  type: http
+  behavior: classical
+  format: text
+  interval: 86400
+ym: &ym
+  type: http
+  behavior: domain
+  format: yaml
+  interval: 86400
+ip: &ip
+  type: http
+  behavior: ipcidr
+  format: yaml
+  interval: 86400
+ 
+rule-providers:
+  BanEasyPrivacy: # 屏蔽隐私追踪
+    <<: *c
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
+    path: ./rule/BanEasyPrivacy.txt
+  ChinaIp: # 中国IP段
+    <<: *ip
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
+    path: ./rule/ChinaIp.txt
+  direct: # 直连域名
+    <<: *ym
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt
+    path: ./rule/direct.txt
+  LoyalsGG: # Loyalsoldier广告域名
+    <<: *ym
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
+    path: ./rule/LoyalsGG.txt
+  AppGG: # 秋风App广告域名
+    <<: *ym
+    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
+    path: ./rule/AppGG.txt
+ 
+rules:
+  - RULE-SET,LoyalsGG,🛡 广告拦截
+  - RULE-SET,AppGG,🛡 广告拦截
+  - RULE-SET,BanEasyPrivacy,🛡 广告拦截
+  - MATCH,🚀 全局直连
+ 
